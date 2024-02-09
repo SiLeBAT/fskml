@@ -51,4 +51,24 @@ public class ScriptFactory {
 		
 		return script;
 	}
+	/**
+	 * 
+	 * @param String script code (e.g.: R code)
+	 * @return instance of Script
+	 * @throws IOException
+	 */
+	public static Script createScript(String scriptString, String language, String pythonPath, String analyzedScriptPath, String envpath)throws IOException {
+		Script script = null;
+		
+		if(language.toLowerCase().startsWith("r"))
+		{
+			script = new RScript(scriptString);
+		}
+		if(language.toLowerCase().startsWith("py"))
+		{
+			script = new PythonScript(scriptString,  pythonPath,  analyzedScriptPath,  envpath);
+		}
+		
+		return script;
+	}
 }
